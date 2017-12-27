@@ -1,14 +1,14 @@
-package name.martingeisse.trading_game.game.space;
+package name.martingeisse.electronics_game.game.space;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
-import name.martingeisse.trading_game.game.action.Action;
-import name.martingeisse.trading_game.game.action.actions.MoveToPositionAction;
-import name.martingeisse.trading_game.game.event.GameEventEmitter;
-import name.martingeisse.trading_game.game.player.Player;
-import name.martingeisse.trading_game.platform.postgres.PostgresContextService;
-import name.martingeisse.trading_game.postgres_entities.QSpaceObjectBaseDataRow;
+import name.martingeisse.electronics_game.game.action.Action;
+import name.martingeisse.electronics_game.game.action.actions.MoveToPositionAction;
+import name.martingeisse.electronics_game.game.event.GameEventEmitter;
+import name.martingeisse.electronics_game.game.player.Player;
+import name.martingeisse.electronics_game.platform.postgres.PostgresContextService;
+import name.martingeisse.electronics_game.postgres_entities.QSpaceObjectBaseDataRow;
 import org.postgresql.geometric.PGpoint;
 
 /**

@@ -1,4 +1,4 @@
-package name.martingeisse.trading_game.gui.map;
+package name.martingeisse.electronics_game.gui.map;
 
 import javax.imageio.stream.ImageOutputStreamImpl;
 import java.io.IOException;

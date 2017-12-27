@@ -1,14 +1,14 @@
-package name.martingeisse.trading_game.game.space;
+package name.martingeisse.electronics_game.game.space;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import name.martingeisse.trading_game.common.util.contract.ParameterUtil;
-import name.martingeisse.trading_game.game.EntityProvider;
-import name.martingeisse.trading_game.game.definition.MiningYieldInfo;
-import name.martingeisse.trading_game.game.event.GameEventEmitter;
-import name.martingeisse.trading_game.game.item.ImmutableItemStacks;
-import name.martingeisse.trading_game.platform.postgres.PostgresContextService;
-import name.martingeisse.trading_game.postgres_entities.SpaceObjectBaseDataRow;
+import name.martingeisse.electronics_game.common.util.contract.ParameterUtil;
+import name.martingeisse.electronics_game.game.EntityProvider;
+import name.martingeisse.electronics_game.game.definition.MiningYieldInfo;
+import name.martingeisse.electronics_game.game.event.GameEventEmitter;
+import name.martingeisse.electronics_game.game.item.ImmutableItemStacks;
+import name.martingeisse.electronics_game.platform.postgres.PostgresContextService;
+import name.martingeisse.electronics_game.postgres_entities.SpaceObjectBaseDataRow;
 
 /**
  *

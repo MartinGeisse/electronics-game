@@ -1,10 +1,10 @@
-package name.martingeisse.trading_game.gui.map;
+package name.martingeisse.electronics_game.gui.map;
 
-import name.martingeisse.trading_game.game.action.Action;
-import name.martingeisse.trading_game.game.action.ActionQueue;
-import name.martingeisse.trading_game.game.space.GeometryUtil;
-import name.martingeisse.trading_game.game.space.SpaceObject;
-import name.martingeisse.trading_game.platform.wicket.AbstractPanel;
+import name.martingeisse.electronics_game.game.action.Action;
+import name.martingeisse.electronics_game.game.action.ActionQueue;
+import name.martingeisse.electronics_game.game.space.GeometryUtil;
+import name.martingeisse.electronics_game.game.space.SpaceObject;
+import name.martingeisse.electronics_game.platform.wicket.AbstractPanel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.basic.Label;

@@ -1,4 +1,4 @@
-package name.martingeisse.trading_game.game.space;
+package name.martingeisse.electronics_game.game.space;
 
 /**
  * A space object that can change its position or shape. Dynamic space objects are presented as individual graphical

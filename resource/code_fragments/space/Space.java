@@ -1,4 +1,4 @@
-package name.martingeisse.trading_game.game.space;
+package name.martingeisse.electronics_game.game.space;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -7,10 +7,10 @@ import com.google.inject.Singleton;
 import com.mysema.commons.lang.CloseableIterator;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.sql.postgresql.PostgreSQLQuery;
-import name.martingeisse.trading_game.common.database.GeometricExpressions;
-import name.martingeisse.trading_game.platform.postgres.PostgresContextService;
-import name.martingeisse.trading_game.postgres_entities.QSpaceObjectBaseDataRow;
-import name.martingeisse.trading_game.postgres_entities.SpaceObjectBaseDataRow;
+import name.martingeisse.electronics_game.common.database.GeometricExpressions;
+import name.martingeisse.electronics_game.platform.postgres.PostgresContextService;
+import name.martingeisse.electronics_game.postgres_entities.QSpaceObjectBaseDataRow;
+import name.martingeisse.electronics_game.postgres_entities.SpaceObjectBaseDataRow;
 import org.postgresql.geometric.PGpoint;
 
 import java.util.ArrayList;

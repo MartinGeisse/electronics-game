@@ -1,8 +1,8 @@
-package name.martingeisse.trading_game.game.space;
+package name.martingeisse.electronics_game.game.space;
 
-import name.martingeisse.trading_game.game.EntityProvider;
-import name.martingeisse.trading_game.game.item.Inventory;
-import name.martingeisse.trading_game.game.item.ObjectWithInventory;
+import name.martingeisse.electronics_game.game.EntityProvider;
+import name.martingeisse.electronics_game.game.item.Inventory;
+import name.martingeisse.electronics_game.game.item.ObjectWithInventory;
 
 /**
  *

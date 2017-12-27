@@ -1,13 +1,13 @@
-package name.martingeisse.trading_game.game.space;
+package name.martingeisse.electronics_game.game.space;
 
 import com.google.common.collect.ImmutableList;
-import name.martingeisse.trading_game.game.action.Action;
-import name.martingeisse.trading_game.game.action.actions.MiningAction;
-import name.martingeisse.trading_game.game.action.actions.MiningYield;
-import name.martingeisse.trading_game.game.definition.MiningYieldInfo;
-import name.martingeisse.trading_game.game.event.GameEventEmitter;
-import name.martingeisse.trading_game.game.item.ImmutableItemStacks;
-import name.martingeisse.trading_game.game.player.Player;
+import name.martingeisse.electronics_game.game.action.Action;
+import name.martingeisse.electronics_game.game.action.actions.MiningAction;
+import name.martingeisse.electronics_game.game.action.actions.MiningYield;
+import name.martingeisse.electronics_game.game.definition.MiningYieldInfo;
+import name.martingeisse.electronics_game.game.event.GameEventEmitter;
+import name.martingeisse.electronics_game.game.item.ImmutableItemStacks;
+import name.martingeisse.electronics_game.game.player.Player;
 
 /**
  *

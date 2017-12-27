@@ -1,4 +1,4 @@
-package name.martingeisse.trading_game.game.space;
+package name.martingeisse.electronics_game.game.space;
 
 /**
  * Can be implemented by arbitrary objects (even non-persistent helper objects) to provide a position, e.g. for

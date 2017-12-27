@@ -1,8 +1,8 @@
-package name.martingeisse.trading_game.game.space;
+package name.martingeisse.electronics_game.game.space;
 
 import com.google.common.collect.ImmutableSet;
-import name.martingeisse.trading_game.common.util.WtfException;
-import name.martingeisse.trading_game.postgres_entities.SpaceObjectBaseDataRow;
+import name.martingeisse.electronics_game.common.util.WtfException;
+import name.martingeisse.electronics_game.postgres_entities.SpaceObjectBaseDataRow;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package name.martingeisse.trading_game.game.space;
+package name.martingeisse.electronics_game.game.space;
 
 /**
  * Contains helper method for space geometry calculations.

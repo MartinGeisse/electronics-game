@@ -1,7 +1,7 @@
 <?xml version="1.1" encoding="UTF-8"?>
 <!DOCTYPE xml>
 <Configuration status="WARN"
-               packages="name.martingeisse.trading_game.platform.util.logging">
+               packages="name.martingeisse.electronics_game.platform.util.logging">
     <Appenders>
 
         <!--
@@ -69,7 +69,7 @@
         </Root>
         <Logger name="org.quartz.core.JobRunShell" level="INFO"/>
         <!--
-        <Logger name="name.martingeisse.trading_game.Foo" level="INFO" additivity="false">
+        <Logger name="name.martingeisse.electronics_game.Foo" level="INFO" additivity="false">
             <AppenderRef ref="console"/>
         </Logger>
         -->

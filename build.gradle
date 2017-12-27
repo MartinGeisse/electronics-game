@@ -10,7 +10,7 @@ targetCompatibility = '1.8'
 tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 }
-mainClassName = "name.martingeisse.trading_game.Main"
+mainClassName = "name.martingeisse.electronics_game.Main"
 
 sourceSets.main.java.srcDir 'src/main/generated'
 sourceSets.main.resources.srcDir 'src/main/java'
@@ -19,11 +19,11 @@ sourceSets.main.output.resourcesDir 'build/classes/main'
 
 task InitializeSubsystem_All(type: JavaExec) {
 	classpath = sourceSets.main.runtimeClasspath
-	main = 'name.martingeisse.trading_game.tools.init.AaaMain';
+	main = 'name.martingeisse.electronics_game.tools.init.AaaMain';
 }
 task InitializeSubsystem_DatabaseStructure(type: JavaExec) {
 	classpath = sourceSets.main.runtimeClasspath
-	main = 'name.martingeisse.trading_game.tools.init.DatabaseStructureInitMain';
+	main = 'name.martingeisse.electronics_game.tools.init.DatabaseStructureInitMain';
 }
 
 repositories {

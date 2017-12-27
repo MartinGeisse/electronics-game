@@ -1,6 +1,6 @@
-package name.martingeisse.trading_game.gui.item;
+package name.martingeisse.electronics_game.gui.item;
 
-import name.martingeisse.trading_game.game.item.ItemType;
+import name.martingeisse.electronics_game.game.item.ItemType;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
 

@@ -1,12 +1,12 @@
-package name.martingeisse.trading_game.game.space;
+package name.martingeisse.electronics_game.game.space;
 
-import name.martingeisse.trading_game.game.EntityProvider;
-import name.martingeisse.trading_game.game.action.Action;
-import name.martingeisse.trading_game.game.action.ActionQueueEntry;
-import name.martingeisse.trading_game.game.action.actions.MoveToPositionAction;
-import name.martingeisse.trading_game.game.item.Inventory;
-import name.martingeisse.trading_game.game.item.ObjectWithInventory;
-import name.martingeisse.trading_game.game.player.Player;
+import name.martingeisse.electronics_game.game.EntityProvider;
+import name.martingeisse.electronics_game.game.action.Action;
+import name.martingeisse.electronics_game.game.action.ActionQueueEntry;
+import name.martingeisse.electronics_game.game.action.actions.MoveToPositionAction;
+import name.martingeisse.electronics_game.game.item.Inventory;
+import name.martingeisse.electronics_game.game.item.ObjectWithInventory;
+import name.martingeisse.electronics_game.game.player.Player;
 
 /**
  *

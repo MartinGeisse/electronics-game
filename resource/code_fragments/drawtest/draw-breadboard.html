@@ -1,0 +1,150 @@
+<html>
+<body>
+    <canvas id="mainCanvas" width="800" height="600" style="display: block; margin: 0px; padding: 0px; z-index: 0; "></canvas>
+    <script type="text/javascript">
+
+        var Renderer = (function() {
+
+            var cellSize = 20;
+            var clipPitchX = 4 * cellSize;
+            var clipPitchY = 1 * cellSize;
+            var canvas = mainCanvas;
+            var context = canvas.getContext('2d');
+
+            function drawSubstrate() {
+                context.fillStyle = '#004000';
+                context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+            }
+
+            function drawClip(clipX, clipY) {
+                context.fillStyle = '#a0a0a0';
+                context.fillRect(
+                    clipX * clipPitchX + 1,
+                    clipY * clipPitchY + 1,
+                    clipPitchX - 2,
+                    clipPitchY - 2
+                );
+                context.fillStyle = '#404040';
+                for (var i = 0; i < 4; i++) {
+                    context.beginPath();
+                    context.arc(
+                        clipX * clipPitchX + 10 + 20 * i,
+                        clipY * clipPitchY + 10,
+                        2, 0, 2 * Math.PI
+                    );
+                    context.fill();
+                }
+            }
+
+            function drawChip(cellX, cellY, width, height, pinLabelsLeft, pinLabelsRight, centerText) {
+                context.fillStyle = '#000000';
+                context.fillRect(
+                    (cellX + 1) * cellSize - 2,
+                    cellY * cellSize + 2,
+                    (width - 2) * cellSize + 4,
+                    height * cellSize - 4
+                );
+                context.fillStyle = '#ffffff';
+                for (var i = 0; i < height; i++) {
+                    context.fillRect((cellX + 1) * cellSize - 10, (cellY + i) * cellSize + cellSize / 2 - 2, 8, 4);
+                    context.fillRect((cellX + width - 1) * cellSize + 2, (cellY + i) * cellSize + cellSize / 2 - 2, 8, 4);
+                }
+                if (pinLabelsLeft && pinLabelsLeft.length) {
+                    context.textAlign = 'left';
+                    context.textBaseline = 'middle';
+                    for (var i = 0; i < height; i++) {
+                        if (i >= pinLabelsLeft.length) {
+                            break;
+                        }
+                        context.fillText(pinLabelsLeft[i], (cellX + 1) * cellSize, (cellY + i) * cellSize + cellSize / 2);
+                    }
+                }
+                if (pinLabelsRight && pinLabelsRight.length) {
+                    context.textAlign = 'right';
+                    context.textBaseline = 'middle';
+                    for (var i = 0; i < height; i++) {
+                        if (i >= pinLabelsRight.length) {
+                            break;
+                        }
+                        context.fillText(pinLabelsRight[i], (cellX + width - 1) * cellSize, (cellY + i) * cellSize + cellSize / 2);
+                    }
+                }
+                if (centerText) {
+                    context.textAlign = 'center';
+                    context.textBaseline = 'middle';
+                    context.translate((cellX + width / 2) * cellSize, (cellY + height / 2) * cellSize);
+                    context.rotate(90 * Math.PI / 180);
+                    context.fillText(centerText, 0, 0);
+                    context.resetTransform();
+                }
+            }
+
+            function drawHorizontalLed(cellX, cellY, on) {
+                context.fillStyle = '#c0c0c0';
+                context.fillRect(cellX * cellSize + 2, cellY * cellSize + cellSize / 2 - 4, 2 * cellSize - 4, 8);
+                context.fillStyle = on ? '#ff4040' : '#400000';
+                context.fillRect(cellX * cellSize + 8, cellY * cellSize + cellSize / 2 - 8, 2 * cellSize - 16, 16);
+            }
+
+            function drawVerticalLed(cellX, cellY, on) {
+                context.fillStyle = '#c0c0c0';
+                context.fillRect(cellX * cellSize + cellSize / 2 - 4, cellY * cellSize + 2, 8, 2 * cellSize - 4);
+                context.fillStyle = on ? '#ff4040' : '#400000';
+                context.fillRect(cellX * cellSize + cellSize / 2 - 8, cellY * cellSize + 8, 16, 2 * cellSize - 16);
+            }
+
+            function drawHorizontalSwitch(cellX, cellY, on) {
+                context.fillStyle = '#c0c0c0';
+                context.fillRect(cellX * cellSize + 2, cellY * cellSize + cellSize / 2 - 8, 2 * cellSize - 4, 16);
+                context.fillStyle = '#000000';
+                context.fillRect(cellX * cellSize + 8, cellY * cellSize + cellSize / 2 - 2, 2 * cellSize - 16, 4);
+                if (on) {
+                    context.fillRect((cellX + 1) * cellSize + 4, cellY * cellSize + 5, 10, 10);
+                } else {
+                    context.fillRect(cellX * cellSize + 6, cellY * cellSize + 5, 10, 10);
+                }
+            }
+
+            function drawVerticalSwitch(cellX, cellY, on) {
+                context.fillStyle = '#c0c0c0';
+                context.fillRect(cellX * cellSize + cellSize / 2 - 8, cellY * cellSize + 2, 16, 2 * cellSize - 4);
+                context.fillStyle = '#000000';
+                context.fillRect(cellX * cellSize + cellSize / 2 - 2, cellY * cellSize + 8, 4, 2 * cellSize - 16);
+                if (on) {
+                    context.fillRect(cellX * cellSize + 5, cellY * cellSize + 6, 10, 10);
+                } else {
+                    context.fillRect(cellX * cellSize + 5, (cellY + 1) * cellSize + 4, 10, 10);
+                }
+            }
+
+            function drawBreadboard() {
+                context.resetTransform();
+                drawSubstrate();
+                for (var clipX = 0; clipX < 10; clipX++) {
+                    for (var clipY = 0; clipY < 30; clipY++) {
+                        drawClip(clipX, clipY);
+                    }
+                }
+
+                // test
+                drawChip(3, 3, 4, 5, ['a', 'b', 'c', 'd', 'e'], ['f', 'g', 'h', 'i', 'j'], "FOO");
+                drawHorizontalLed(3, 10, false);
+                drawHorizontalLed(3, 11, true);
+                drawVerticalLed(8, 10, false);
+                drawVerticalLed(9, 10, true);
+                drawHorizontalSwitch(11, 10, false);
+                drawHorizontalSwitch(11, 11, true);
+                drawVerticalSwitch(16, 10, false);
+                drawVerticalSwitch(17, 10, true);
+            }
+
+            this.drawBreadboard = drawBreadboard;
+
+        });
+
+        var renderer = new Renderer();
+        renderer.drawBreadboard();
+
+    </script>
+</body>
+</html>

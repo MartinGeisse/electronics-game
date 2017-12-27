@@ -1,4 +1,4 @@
-package name.martingeisse.trading_game.game.space;
+package name.martingeisse.electronics_game.game.space;
 
 /**
  * Immutable class that is used by {@link DynamicSpaceObject} to give a report about its movement.
