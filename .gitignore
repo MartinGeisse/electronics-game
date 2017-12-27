@@ -1,0 +1,11 @@
+/.gradle
+/build
+/.idea
+/classes
+/logs
+/*.log
+/test.html
+/resource/stylesheet/.sass-cache
+.DS_Store
+/${myweb:initParam.logfilePath}
+/electronics-game.iml

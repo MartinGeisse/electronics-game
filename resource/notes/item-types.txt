@@ -1,0 +1,126 @@
+
+Mining / etc:
+- class 1..5 (?) mineral ore, eingestuft nach Seltenheit
+	- asteroid mining
+	- können mit entsprechendem gear compressed werden -> gleiche Items mit weniger Gewicht
+	- zu class 1..5 metals
+- hydrocarbons (hier keine Klassen, sondern alles durch Manufacturing erreicht)
+	- von Planeten
+	- weiterverarbeitung zu class 1..5 chemical compounds
+		- plastic parts
+		- electronic parts (zusammen mit metallen)
+		- direkt nötig für diverse items im manufacturing, z.B. Raumschiffteile
+		- coolant
+		- explosives
+- food; livestock
+	- von Planeten
+	- hier vor allem so interessant: Wird auf Planet A erzeugt und ist für Planet X bestimmt -> zielgerichtete
+		Transportaufträge, ähnlich wie bei Passagierflügen
+- hydrogen / helium isotopes
+	- von sternen, braucht high-end gear
+- dark matter
+	- braucht ultra-high-end gear
+
+Mining Equipment
+- Mining Gear / m.laser
+	- spezialisierung auf Erztypen bzw. Sondertypen
+- Mining Drone
+	- spezialisierung auf Erztypen bzw. Sondertypen
+	- mit integriertem compressor
+
+Manufacturing
+- Blueprint Originals, Blueprint Copies
+	- researching Blueprints sollte als eigener Zweig durchgehen, was Spieler machen können
+	- Blueprints optimieren könnte auch als Spieler-Aktion durchgehen
+- disassembled Manufacturing Sites
+	- Können in Stationen und in großen Schiffen installiert werden
+	- variieren in Schnelligkeit, Waste, Items die erzeugt werden können
+	- einfache Sites variieren in den Items nur nach "besser" (bessere sites können auch schlechtere Items);
+		Highend sites können nur Spezial-Items
+	- keine Unterschiede darin, wie viele Aufträge man queuen kann, da man da drum rum scripten kann und es daher keine
+		Einschränkung wäre, nur umständlich
+- Manufacturing Tools
+	- müssen mit Sites kombiniert werden, um bestimmte Items herzustellen
+	- können auch einfach die Eigenschaften upgraden
+- Manufacturing Upgrades (überhaupt? oder dasselbe wie m.tools?)
+	- verbessern nur die Eigenschaften
+- disassembled Erzkompressor -> kann auch installiert werden
+	- und ähnliche spezialisierte m.sites
+- Kombination aus Laderaum und spezialisierten m.sites (z.B. Laderaum, der gleichzeitig Erz compressed)
+- items ("Zutaten"), die beim Manufacturing verbraucht werden und bei komplexeren blueprints mit einer chance, ob
+	überhaupt was bei rauskommt, trotzdem weg sind
+	- demzufolge auch manufacturing equipment und skills, die diese chance verbessern
+	- zusätzliche Items, die nur helfen, die Chance zu verbessern und im Falle eines Fehlschlags einen Teil der
+		Items retten bzw. die Chance verbessern, items zu retten
+
+Fracht
+- disassembled ship cargo module
+- cargo container
+- secured cargo container (verschiedene levels; können gehackt werden, aber ohne hacking nicht geklaut, sonst wärs doof)
+
+Schiffe (disassembled)
+- disassembled $SHIP (kann i.A. nur in Stationen gelagert werden, da sonst zu groß)
+- Stationen und große Schiffe können nur in mehreren Stufen direkt im Raum zusammengebaut werden
+	- benötigt als Aufhänger ein Item, welches in den Laderaum passt und am Zielort deployed werden muss
+- Kanonentürme
+- Frachthallen
+- Tankstationen (?)
+- Treibstoff (?)
+	- wenn alle, dann fliegt man nur noch mit Solarantrieb, d.h. langsam
+
+Forschung:
+- T1-Kopien anzufertigen ist auch nicht umsonst und kostet Zeit
+- EO T2: Forschung erzeugt blueprint "copies", keine originale, also limitiert, und auch die copies nur mit einer
+	gewissen Chance
+
+Teile (EO sample):
+	fusion thruster
+	radar sensor cluster
+	nanoelectrical microrocessor
+	tungsten carbide armor plate
+	antimatter reactor unit
+	mega beam laster 1 (als input item für MBL2)
+	R.A.M. Weapon Tech
+	laser focusing crystals
+	morphite (mineral)
+	robotics
+	datacore - hydromagnetic physics
+	datacore - nanite engineering
+		-> datacores werden "verbraucht" um aus einem blueprint ein besseres zu machen
+	energized adaptive nano membrane 1 (für 2)
+	R.A.M. armor/hull tech
+	fernite carbide composite armor plate
+	titanium diborite armor plate
+	crystalline carbonide armor plate
+	tesseract capacitor unit
+	base metals -> reactive metals...
+	heavy metals -> toxic metals --+--> construction blocks
+	non-cs crystals -> chriral structures...
+	felsic magma -> silicon --+--> miniature electronics --+--> smart-fab units
+	complex organisms -> proteins...
+	carbon compounds -> biofuels --+--> livestock
+	microorganisms -> bacteria...
+	planktic colonies -> biomass --+--> viral agent --+-->vaccines --+++--> sterile conduits
+		+water (aus aqueous liquids)
+	commodities (= güter aller art), nur zum Handeln z.B. mit Planeten
+
+
+------------------------------------------------------------------------------------------------------------
+
+Idee:
+- "If you think Eve's crafting system is simple, start looking into T2 production, moon mining, POS reactions, and T2
+	invention. It's a whole other game."
+
+
+EO manufacturing:
+- ships brauchen i.A. nur metalle -- scheint für viele einfache items zu gelten
+- später:
+	- (nanite repair paste) = (gel-matrix biopaste, 4x nanites, 1x data chips)
+	- (cargohold optimization 2) = (interface circuit, power circuit, armor/hull tech, single-crystal superalloey i-beam)
+
+
+------------------------------------------------------------------------------------------------------------
+
+Ansatz (zeitlich nicht eingeordnet!):
+
+ItemBaseType db tabelle. ItemBaseTypeId string. ItemType jsonb. Feld baseTypeId im ItemType.

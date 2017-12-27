@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html>
+<wicket:head>
+    <style type="text/css">
+
+            .tab-row .selected .btn {
+                background-color: #80c040;
+            }
+
+            .tab-row > div {
+                margin-top: 2px;
+            }
+
+            .tab-row > .last {
+                margin-top: 20px;
+            }
+
+    </style>
+    <script type="text/javascript">
+        $(function() {
+            $('#feedbackForm').on('keypress', 'textarea', function(e) {
+                if (e && e.keyCode == 13) {
+                    $('#feedbackForm').submit();
+                    $('#feedbackSentIndicator').show().delay(2000).fadeOut(500);
+                    return false;
+                }
+            });
+        });
+    </script>
+</wicket:head>
+<body>
+<wicket:panel xmlns:wicket="http://wicket.apache.org">
+    <div style="position: fixed; left: 0px; top: 0px; bottom: 0px; width: 300px; padding: 5px;">
+        <h1>Main Menu</h1>
+        <div wicket:id="tabs-container" class="tab-row">
+            <div wicket:id="tabs">
+                <a href="#" wicket:id="link" class="btn btn-primary btn-block"><span
+                        wicket:id="title">[[tab title]]</span></a>
+            </div>
+        </div>
+        <form id="feedbackForm" wicket:id="feedbackForm" style="position: absolute; left: 10px; right: 10px; bottom: 0px;">
+            <div>Feedback?</div>
+            <div><textarea wicket:id="text"
+                           style="width: 100%; margin-bottom: 3px; resize: none; background-color: #aaa; color: black; "></textarea>
+            </div>
+            <div><input type="submit" value="Send" class="btn btn-primary btn-block"></div>
+            <div id="feedbackSentIndicator" style="display: none; margin-top: 5px; ">Feedback sent.</div>
+        </form>
+    </div>
+    <div style="position: fixed; left: 300px; top: 0px; bottom: 0px; right: 0px; padding: 5px;" class="tab-panel" wicket:id="panel"><!-- no panel --></div>
+</wicket:panel>
+</body>
+</html>

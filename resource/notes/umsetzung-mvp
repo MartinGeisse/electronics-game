@@ -1,0 +1,97 @@
+
+Milestones:
+- Spielgeschwindigkeiten anpassen (Fluggeschwindigkeit, Mining-Geschwindigkeit, ...)
+- Spielinhalt
+	- Upgrades müssen als Actions mit Zeit gebaut werden, brauchen verschiedene Erze und sind gleich im Schiff verbaut
+		- schneller fliegen
+		- schneller Erz abbauen
+		- höhere Ausbeute
+		- mehr Frachtraum
+- analytics
+- "Bezahlung" per folding@home
+- sollen diverse zukünftige Features als Fake angeboten werden oder lieber geheim halten?
+    - wenn ja, dann anzeigen und dann aber verhindern, dass sie genutzt werden, um zu verbergen, dass sie noch gar nicht
+        gehen. Beispiele:
+        - only for closed beta users
+            - Mit Fake-Bewerbungsformular. Hinweis, dass die User zufällig ausgewählt werden, dann ist keiner enttäuscht,
+                dass er nicht drankommt.
+        - please enter beta user code: (Eingabeformular)
+            Nicht so toll, das klingt eher nach Bezahlfeature, auch wenn es nicht so gemeint ist und nicht so da steht
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MVP-Ideen: (WICHTIG: Nicht Ideen, was man alles einbauen könnte, sondern wie man kreativ Dinge *weglassen* kann bzw.
+        durch manuelle Arbeit ersetzen kann, vgl. MVP unter https://en.wikipedia.org/wiki/Lean_startup !)
+- Research-Aktionen: Erzeugen Research-Punkte und wenn der Spieler genug zusammen hat, bastele ich manuell ein Item
+    in die DB. Ähnliches geht mit Research und Manufacturing!
+    - textuelle beschreibung, was gebaut / erfunden werden soll
+        - daraus kann ich auch ableiten, welche Features zukünftig interessant sind!
+- Buy Orders / Sell Orders mit Location per Script erzeugen, dafür auch Fake-Spieler erzeugen
+- seltene Erze, die man finden will/sollte
+- Facebook page (passt das zur Zielgruppe? Wer ist die?)
+    -> später vllt facebook, jetzt aktuell ist das eine zu große ablenkung
+- "Erze verkaufen, Equipment kaufen" als gesonderte Funktion, nicht über Market Orders.
+    Diese erst nachträglich dazu, und erst mal zusätzlich. Nach und nach die ursprüngliche
+    Funktionalität ausbauen.
+- Die ersten Spieler haben privilegien, indem sie eher als game master agieren
+    (sofern gewünscht). Das bringt auch noch mal ganz neue Aspekte rein im Vergleich zum
+    reinen Wettbewerb
+- Freunde und Bekannte als erste "Dauertester", von da aus weiter
+- Handel als *nötiges* Element schon im MVP. Das soll ja später auch ein Kernpunkt sein.
+    -> welche Kernpunkte gibt es noch?
+    --> brainstorming nötig!
+
+Überlegung:
+- Was ist der "pain point", der gelöst wird?
+- Was soll später alles möglich sein (Brainstorming)
+
+
+Was sind die Kernelemente des Spiels? Diese soll der MVP zeigen:
+- asynchronous gameplay. Man soll nur ab und zu mal einloggen und nachbessern müssen, ohne dass daraus ein Nachteil
+    entsteht.
+        - langsames Gameplay
+        - Action Queue
+        - keine schnellen Reaktionen auf andere Spieler nötig
+        - Alarme und Scripting
+- massively multiplayer
+- "Unternehmungen". Man soll im Spiel erfolgreich sein, indem man kreative und ungewöhnliche Dinge tut, wo der Erfolg
+    unklar ist und das Risiko hoch. Vgl. Bau einer Station in lowsec bei EO.
+- Verwandt damit ist, dass die Spielwelt so komplex ist, dass man sie nicht vollständig überblicken kann. Die
+    Grundregeln sollen klar und einfach sein, aber z.B. die verfügbaren Items, Herstellungswege etc. nicht.
+    Ebenso soll das räumliche Ausmaß riesig sein.
+- Die andere Komponente für Erfolg soll die Kooperation zwischen Spielern sein. Je mehr Beziehungen zu anderen
+    Spielern man hat, desto besser. Hier sollen aber nur "echte" Beziehungen gelten, also nicht einfach Bonuspunkte
+    für eine lange "Freundeliste", sondern die tatsächliche Zusammenarbeit soll besser funktionieren als das alleine
+    Spielen. Dazu zählen auch "Gilden" / "Firmen".
+- Durch Erfolg sollen die Spieler ingame-Prestige erlangen. Z.B. könnte eine POS bekannt werden als wichtiger
+    Handelspunkt. Idealerweise so weit, dass die Spieler in Foren etc. außerhalb des Spiels damit angeben.
+- Neue Spieler sollen einen gewissen Schutz genießen.
+
+Wie sollen diese umgesetzt werden?
+- Handel und Industrie! Der Fokus sollte hier noch mehr darauf sein, kein EO-Klon zu sein, sondern das "Weltweite
+    Handels- und Industriespiel", was ich mir schonmal ausgedacht hatte, nur als MMO und im Weltraum statt auf der
+    Erde.
+- Dazu sind unglaublich viele verschiedene Items und Produktionswege nötig, außerdem viele verschiedene "Arten" von
+    Items mit Sonderregeln.
+- Sinnvoll sind auch Parametrisierte Items, da diese 1. die Vielfalt drastisch erhöhen und 2. eigene Spielerstrategien
+    erlauben, um die Parameter zu verbessern. Bsp:
+    - Erz: Reinheit, Schädliche Verunreinigung, Kompression/Dichte, Isotope (das könnten aber auch verschiedene Items sein)
+    - Rohstoffe: Reinheit, Kompression
+    - Teile: Materialgüte (aus Reinheit), Qualität der Verarbeitung, Belastbarkeit
+    - Spezifische Parameter für einzelne Itemtypen
+
+Was sind keine Kernelemente sondern nette Features?
+- "kein Kampf" -- ist nur Hilfsmittel für asynchronous gameplay
+
+Konkrete Umsetzung:
+- Man könnte per Init-Script die Zwischenprodukte und die Manufacturing-Regeln *zufällig* erzeugen! Das ist für einen
+    MVP ausreichend.
+- Market muss umgesetzt werden. player-to-player, da ansonsten fiktive Preise festgelegt werden müssten. Das
+    Market-System ist ja auch schon halb fertig.
+- Manufacturing muss umgesetzt werden, aber z.B. blueprint-los, als action innerhalb des Spielerschiffs (reicht für MVP)
+
+
+
+
+
+

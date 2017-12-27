@@ -1,0 +1,111 @@
+
+clear page store on redeploy! Probleme mit stale pages -> UI funktioniert nicht mehr, reload hilft nicht (da es nur die
+kaputte seite reloaded statt eine neue funktionierende zu erstellen)
+
+Mobile-first, Responsive, blablabla:
+- Folgendes sind zwei unabhängige Fragen:
+	- sollen sich Dialoge etc. als neue Seite präsentieren?
+		Phone: fast klar, denn ein fast-fullscreen-dialog hat keine nennenswerten Vorteile (neben dem Rand ist eh nix mehr erkennbar)
+			und ist technisch sehr aufwändig
+		Pad: unklar
+		Desktop: unklar
+	- soll der Wechsel auf eine neue UI-Seite als Browser-Navigation zu einer neuen URL realisiert werden?
+		- aktuelle Vermutung: eher nein, denn dann muss die Websockets-Verbindung jeweils neu aufgebaut werden.
+			Aber ob das schlimm ist, ist noch unklar.
+
+
+
+Dialog button order:
+- detect platform and use platform order (Windows: OK, Cancel; all others: Cancel, OK)
+	- Windows: UA contains the substring "Windows NT"
+	- alle außer Windows haben einheitlich OK rechts
+- make OK button the call-to-action (bright colors)
+- make cancel a link or smaller button
+- default action (enter) is OK
+- only use for two-button dialogs; for 3+, do not use OK or cancel but use descriptive labels
+
+
+
+------------------------------------------------------------------------------------------------------------
+GUI arrangement
+------------------------------------------------------------------------------------------------------------
+
+http://pozniak.pl/wp/wp-content/uploads/2012/06/IMG_0665.png
+
+Ist modal auf Page-Level, aber nicht modal nach Spielzuständen (docked, undocked) sondern nach
+Navigation im Menü. Das ist im Sinne von "mobile first" auf jeden Fall sinnvoll, und das ist für ein
+casual game wichtig! Die Karte wäre dann einfach ein Menüpunkt, evtl. der oberste. Menüpunkte sind
+im Grunde genau die wichtigen UI-Elemente. Dabei sind bestimmte Dinge, z.B. Karten-Objekt-Details,
+Unterpunkte von anderen (z.B. der Karte). Dann sollte auf der Karte nur ganz kurz das wichtigste
+erwähnt werden und alles andere auf einem Unterbildschirn angezeigt werden, der nur von dort
+aus erreichbar ist (also nicht als Menüpunkt).
+
+Kartenobjekte: Am besten die "schnellen Details" in einem Popup neben dem Objekt, oder in der
+Ecke rechts unten, oder am rechten Rand, anzeigen. (Rechts, da die Unterseite "rechts liegt").
+
+Top bar:
+	- Titel
+	- ggf. Zusatzinformationen in Klammern hinter dem Titel, kurz(!)
+	- Backbutton (links)
+	 	- Funktion ist gleich der des Browser-backbuttons
+	 	- das sollte gleich in der header-bar-Komponente hardcodiert werden, damit der
+	 		Browser-Backbutton überall sauber unterstützt wird
+	- rechts ggf. ein besonderer Link, der nicht in die normale Liste passt
+-->
+Die wird sich am ehesten zwischen Phone und Tablet unterscheiden!
+
+
+Tablet/Desktop:
+- linkes 1/3 das Hauptmenü
+- rechte 2/3 für Unterpunkte
+- Backbutton geht zurück zum vorherigen Unterpunkt, aber man könnte den auch anklicken
+- Wenn Unter-Unterpunkt selected, dann wird i.A. der komplette Screen ersetzt und man kommt
+	nur noch per Backbutton zurück
+
+Elemente:
+- Karte (ok)
+	- other object
+		- stats
+		- inventory
+		- player stats
+		- action buttons
+- player
+	- player stats
+	- player ship stats
+	- player skills
+	- player inventory
+	- player action queue
+	- rename
+- player list
+	- other player
+		- ship as other object
+		- trading
+		- action buttons
+- market
+	- buy/sell Preisliste
+	- contracts (=?)
+	- buy orders
+	- sell orders
+- ...?
+- toolbar / menubar für weiteres (= main menu!)
+
+------------------------------------------------------
+Weitere Notizen:
+
+- NNG (Nielsen Norman Group) empfiehlt: Bei Tab-Panels keine Tabs, die "aus der Reihe Fallen". Sie sagen auch, keine
+	Tabs zur Navigation, sondern für verschiedene Ansichten desselben, was ich noch nicht ganz verstehe, aber vermutlich
+	geht es in die gleiche Richtung.
+
+- NNG: Bei nur 2 Tabs muss deutlich werden, welches selected ist. Bei 3+ ist das unabhängig von der Darstellungsart
+	eindeutig. Beispiel: aktuelles Tab auf dem Bildschirm mit dem Tab-Content "verbinden", so dass tab+content wie
+	ein Objekt aussehen.
+
+- "Drop down menus are annoying, according to usability studies from the NN Group. This is because as visitors, we move
+	our eyes much faster than we move the mouse. When we move the mouse to a menu item, we’ve already decided to
+	click…and then the drop down gives us more options. It’s a moment of friction in our minds as visitors."
+	(betrifft vermutlich erst mal nur dropdowns in Navbars, nicht als Formularelement)
+
+- "Mistake #4: Too many items in your navigation" ... "But even eight may be too many. This is because short term
+	memory holds only seven items. That means that, eight is a LOT more than seven."
+
+- "Items that appear first or last on any list are most effective. Navigation is no exception. "

@@ -1,0 +1,176 @@
+<html>
+<head>
+    <style type="text/css">
+
+        html, body, #map {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #map {
+            display: block;
+        }
+
+    </style>
+    <script type="text/javascript" src="jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="general.js"></script>
+    <script type="text/javascript" src="map.js"></script>
+    <script type="text/javascript">
+        $(function() {
+
+            //
+            // create the map
+            //
+
+            var selectionDistance = 20;
+
+            map = new AwesomeMap.Map($('#map')[0]);
+            map.layers[1] = new AwesomeMap.Layer();
+            map.layers[1].renderer = function(context, viewport, object) {
+				context.fillStyle = '#0000ff';
+                context.beginPath();
+				context.arc(object.x, object.y, object.r, 0, 2 * Math.PI);
+				context.fill();
+			};
+            map.layers[0] = new AwesomeMap.Layer();
+            map.layers[0].renderer = function(context, viewport, object) {
+				context.fillStyle = '#008000';
+				context.strokeStyle = '#00ff00';
+				context.lineWidth = map.viewport.untransformDistance(2);
+				context.beginPath();
+				context.arc(object.x, object.y, object.mapRadius + viewport.untransformDistance(object.pixelRadius), 0, 2 * Math.PI);
+				context.fill();
+				context.stroke();
+			};
+            map.installResizer(function(canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+
+            /*
+            $('#map').on('contextmenu', function(event) {
+                var point = map.viewport.untransformMouseEvent(event);
+                point.mapRadius = 500;
+                point.pixelRadius = 50;
+                map.layers[0].objects = [point];
+                map.render();
+                return false;
+            });
+            */
+
+            $('#map').on('contextmenu', function(event) {
+                map.layers[0].objects = [];
+                var point = map.viewport.untransformMouseEvent(event);
+                var clickRadius = map.viewport.untransformDistance(selectionDistance);
+                for (var i in map.layers[1].objects) {
+                    var object = map.layers[1].objects[i];
+                    var maxDistance = clickRadius + object.r;
+                    var dx = (point.x - object.x);
+                    if (dx > maxDistance || dx < -maxDistance) {
+                        continue;
+                    }
+                    var dy = (point.y - object.y);
+                    if (dy > maxDistance || dy < -maxDistance) {
+                        continue;
+                    }
+                    if (dx * dx + dy * dy <= maxDistance * maxDistance) {
+                        // TODO find nearest one in case of multiple matches
+                        map.layers[0].objects = [{
+                            x: object.x,
+                            y: object.y,
+                            mapRadius: object.r,
+                            pixelRadius: selectionDistance,
+                        }];
+                        break;
+                    }
+                }
+                map.render();
+                return false;
+            });
+
+
+            //
+            // initialization
+            //
+
+            for (i=0; i<10000; i++) {
+                map.layers[1].objects.push({
+                    x: Math.random() * 100000 - 50000,
+                    y: Math.random() * 100000 - 50000,
+                    r: Math.random() * 50 + 100
+                });
+            }
+
+            // TODO optimization test
+            if (false) {
+                var oldLayer0 = map.layers[1];
+                var bufferCanvas = null;
+                var bufferContext = null;
+                var bufferCounter = 0;
+                var bufferTransformation = null;
+                map.layers[1] = {
+                    render: function(context, viewport) {
+
+                        // first, simple optimization: rate-limit the actual drawing and just pan/zoom and old rendering
+                        // in between.
+                        // result: not really good because the re-rendering doesn't happen in the background, so when
+                        // it happens there are noticeable stops.
+                        // Web workers won't help: A WW could filter the visible set, but if the visible set is large,
+                        // all those objects must still be rendered (in the main thread).
+                        //
+                        // Solution to this problem: Build an offscreen canvas in the worker and transfer image data
+                        // as in https://stackoverflow.com/questions/1864756/web-workers-and-canvas
+                        //
+
+                        // initialization
+                        if (!bufferCanvas) {
+                            bufferCanvas = document.createElement('canvas');
+                            bufferCanvas.width = context.canvas.width;
+                            bufferCanvas.height = context.canvas.height;
+                            bufferContext = bufferCanvas.getContext('2d');
+                        }
+
+                        // rendering
+                        if (bufferCounter < 1) {
+                            bufferCounter = 10;
+
+                            // clear buffer to transparent
+                            bufferContext.setTransform(1, 0, 0, 1, 0, 0);
+                            bufferContext.clearRect(0, 0, bufferCanvas.width, bufferCanvas.height);
+
+                            // render to buffer
+                            bufferContext.fillStyle = '#0000ff';
+                            bufferContext.setTransform(1, 0, 0, 1, 0, 0);
+                            viewport.applyToContext(bufferContext);
+                            oldLayer0.render(bufferContext, viewport);
+
+                            // remember the current transformation to compute deltas later
+                            bufferTransformation = viewport.cloneForTransformation();
+
+                        } else {
+                            bufferCounter--;
+                        }
+
+                        // render the buffer onto the real canvas
+                        viewport.applyDeltaToContext(context, bufferTransformation);
+                        context.drawImage(bufferCanvas, 0, 0);
+
+                    }
+                };
+            }
+
+            map.render();
+
+        });
+    </script>
+</head>
+<body>
+    <canvas id="map"></canvas>
+</body>
+</html>

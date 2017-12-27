@@ -1,0 +1,94 @@
+
+group = 'name.martingeisse'
+version = '0.1'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+mainClassName = "name.martingeisse.trading_game.Main"
+
+sourceSets.main.java.srcDir 'src/main/generated'
+sourceSets.main.resources.srcDir 'src/main/java'
+sourceSets.main.resources.srcDir 'src/main/generated'
+sourceSets.main.output.resourcesDir 'build/classes/main'
+
+task InitializeSubsystem_All(type: JavaExec) {
+	classpath = sourceSets.main.runtimeClasspath
+	main = 'name.martingeisse.trading_game.tools.init.AaaMain';
+}
+task InitializeSubsystem_DatabaseStructure(type: JavaExec) {
+	classpath = sourceSets.main.runtimeClasspath
+	main = 'name.martingeisse.trading_game.tools.init.DatabaseStructureInitMain';
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+
+	// logging (should be on top to take precedence over whatever versions other libraries try to include)
+	compile 'org.apache.logging.log4j:log4j-api:2.5'
+	compile 'org.apache.logging.log4j:log4j-core:2.5'
+	compile 'org.apache.logging.log4j:log4j-web:2.5'
+	compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.5'
+	compile group: 'com.lmax', name: 'disruptor', version: '3.2.0'
+
+	// JSRs
+	compile 'com.google.code.findbugs:jsr305:3.0.0'
+
+	// web server
+	compile 'javax.servlet:javax.servlet-api:3.1.0'
+	compile 'org.eclipse.jetty.aggregate:jetty-all:9.3.9.v20160517'
+
+	// common helper libraries
+	compile 'org.apache.commons:commons-lang3:3.0'
+	compile 'commons-io:commons-io:2.4'
+	compile 'commons-collections:commons-collections:3.2.1'
+	compile 'org.apache.commons:commons-exec:1.3'
+	compile 'com.google.guava:guava:18.0'
+	compile 'joda-time:joda-time:2.5'
+	compile 'commons-beanutils:commons-beanutils:1.9.2'
+	compile 'commons-codec:commons-codec:1.9'
+	
+	// dependency injection
+	compile 'com.google.inject:guice:4.0'
+	compile 'com.google.inject.extensions:guice-servlet:4.0'
+	compile 'com.google.inject.extensions:guice-multibindings:4.0'
+
+	// Wicket
+	compile 'org.apache.wicket:wicket-core:7.6.0'
+	compile 'org.apache.wicket:wicket-extensions:7.6.0'
+	compile 'org.wicketstuff:wicketstuff-stateless:7.6.0'
+	// imported into src/ and patched: compile 'org.apache.wicket:wicket-native-websocket-jetty9:7.6.0'
+	compile 'org.apache.wicket:wicket-native-websocket-core:7.6.0'
+
+	// JSON
+	compile 'com.google.code.gson:gson:2.3'
+	compile 'com.fasterxml.jackson.core:jackson-core:2.8.7'
+	compile 'com.fasterxml.jackson.core:jackson-databind:2.8.7'
+	compile 'com.fasterxml.jackson.core:jackson-annotations:2.8.7'
+
+	// awesome-wicket-components
+	compile project(':awesome-wicket-components')
+
+	// HTTP client (used for fake CDN)
+	compile 'org.apache.httpcomponents:httpcore:4.3.2'
+	compile 'org.apache.httpcomponents:httpmime:4.3.3'
+	compile 'org.apache.httpcomponents:httpclient:4.3.3'
+	
+	// PostgreSQL
+	compile 'com.querydsl:querydsl-sql:4.1.3'
+	compile 'com.querydsl:querydsl-sql-codegen:4.0.7'
+	compile 'org.postgresql:postgresql:9.4.1208.jre7'
+
+
+}
+configurations {
+    all*.exclude group: 'org.apache.wicket', module: 'wicket'
+}
