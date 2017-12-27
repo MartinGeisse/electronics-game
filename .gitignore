@@ -9,3 +9,4 @@
 .DS_Store
 /${myweb:initParam.logfilePath}
 /electronics-game.iml
+/out
